@@ -19,8 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class connectivity {
+    
     /*
-    public static void main(String[]args)throws Exception{
    String url="jdbc:mysql://localhost:3306/JDBC";
     String username="root";
    String pass="";
@@ -35,17 +35,59 @@ public class connectivity {
    st.close();
    con.close();
 */
-   
-    private static String servername="localhost";
+   /*String url="jdbc:mysql://localhost:3306/JDBC";
+   String username="root";
+   String pass="password";
+   String query=" ";
+   Class.forName("com.mqsql.jdbc.Driver");
+   */
+  // String className, URL, user, password;
+     //connection;
+    static String URL = "jdbc:mysql://localhost:3306/JDBC";
+    static String user="root";
+     static String password="password";
+    /*public connectivity (String className, String URL, String user, String password) {
+        this.className = className;
+        this.URL = URL;
+        this.user = user;
+        this.password = password;
+       
+    }
+     */
+   public static Connection getConnection() {
+        //Load the driver class
+        try {
+            Class.forName("com.mqsql.jdbc.Driver");;
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Unable to load the class. Terminating the program");
+            System.exit(-1);
+        }
+        //get the connection
+        try {
+           Connection con = DriverManager.getConnection(URL, user, password);
+        } catch (SQLException ex) {
+            System.out.println("Error getting connection: " + ex.getMessage());
+            System.exit(-1);
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+            System.exit(-1);
+        }
+       return null;
+    
+   }
+}
+       
+    //Connection con=DriverManager.getConnection(url,username,pass);
+    /*private static String servername="localhost";
     private static String username="root";
-    private static  String dbname="";
+    private static  String dbname="JDBC";
     private static Integer portnumber=3306;
-    private static String password=" ";
+    private static String password="password";
+    
     
     public static Connection getConnection(){
     Connection con=null;
-    MysqlDataSource datasource=new MysqlDataSource(); 
-    
+     
     datasource.setServerName(servername);
     datasource.setUser(username);
     datasource.setPassword(password);
@@ -53,7 +95,8 @@ public class connectivity {
     
     con=datasource.getConnection();
     return con;
+*/
     
-    }
     
-}
+    
+
