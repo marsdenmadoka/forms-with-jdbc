@@ -43,9 +43,9 @@ public class connectivity {
    */
   // String className, URL, user, password;
      //connection;
-    static String URL = "jdbc:mysql://localhost:3306/JDBC";
-    static String user="root";
-     static String password="password";
+    //static String URL = "jdbc:mysql://localhost:3306/JDBC";
+    //static String user="root";
+     //static String password="password";
     /*public connectivity (String className, String URL, String user, String password) {
         this.className = className;
         this.URL = URL;
@@ -54,10 +54,15 @@ public class connectivity {
        
     }
      */
+     /*
+     public static void main(String[] args){
+     connectivity.getConnection();
+     
+     }
    public static Connection getConnection() {
         //Load the driver class
         try {
-            Class.forName("com.mqsql.jdbc.Driver");;
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             System.out.println("Unable to load the class. Terminating the program");
             System.exit(-1);
@@ -76,26 +81,35 @@ public class connectivity {
     
    }
 }
-       
+  */     
     //Connection con=DriverManager.getConnection(url,username,pass);
-    /*private static String servername="localhost";
-    private static String username="root";
-    private static  String dbname="JDBC";
-    private static Integer portnumber=3306;
-    private static String password="password";
+    private static final String URL="jdbc:mysql://localhost:3306/JDBC"; 
+                                                             //what to remember
+    private static final String USER="root";       //non-static variables cannot be accessed by static methods
+   // private static final  String dbname="JDBC";  //static variables can be accessed by  non-static methods
+    //private static Integer portnumber=3306;
+    private static String PASSWORD="password";
     
     
     public static Connection getConnection(){
-    Connection con=null;
-     
-    datasource.setServerName(servername);
-    datasource.setUser(username);
-    datasource.setPassword(password);
-    datasource.setportnumber(portnumber);
+        Connection cnx=null;
+ 
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            try {
+                Connection con = DriverManager.getConnection(URL,USER,PASSWORD);
+            } catch (SQLException ex) {
+                Logger.getLogger(connectivity.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger("Get connection ->" +connectivity.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cnx;
+    }
+}
+
     
-    con=datasource.getConnection();
-    return con;
-*/
+
     
     
     
