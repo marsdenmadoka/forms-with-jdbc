@@ -83,12 +83,12 @@ public class connectivity {
 }
   */     
     //Connection con=DriverManager.getConnection(url,username,pass);
-    private static final String URL="jdbc:mysql://localhost:3306/JDBC"; 
+  //  private static final String URL="jdbc:mysql://localhost:3306/JDBC"; 
                                                              //what to remember
-    private static final String USER="root";       //non-static variables cannot be accessed by static methods
+    //private static final String USER="root";       //non-static variables cannot be accessed by static methods
    // private static final  String dbname="JDBC";  //static variables can be accessed by  non-static methods
     //private static Integer portnumber=3306;
-    private static String PASSWORD="password";
+    //private static String PASSWORD="password";
     
     
     public static Connection getConnection(){
@@ -97,7 +97,7 @@ public class connectivity {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             try {
-                Connection con = DriverManager.getConnection(URL,USER,PASSWORD);
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/JDBC","root"," ");
             } catch (SQLException ex) {
                 Logger.getLogger(connectivity.class.getName()).log(Level.SEVERE, null, ex);
             }
